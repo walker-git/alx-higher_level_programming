@@ -1,25 +1,11 @@
 #!/usr/bin/python3
 
-
-
-
-
 def square_matrix_simple(matrix=[]):
 
-    """
+    new_matrix = matrix.copy()
 
-    wordA function that computes the square
+    for row in range(len(new_matrix)):
 
-    value of all integers of a matrix.
-
-    """
-
-    new_matrix = []
-
-    for col in matrix:
-
-        result = list(map(lambda x: x**2, col))
-
-        new_matrix.append(result)
+        new_matrix[row] = list(map(lambda x: x ** 2, new_matrix[row]))
 
     return new_matrix
