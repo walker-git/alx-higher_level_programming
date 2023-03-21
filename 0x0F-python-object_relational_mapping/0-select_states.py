@@ -1,28 +1,35 @@
 #!/usr/bin/python3
+"""
+Lists all states from the database hbtn_0e_0_usa
+"""
 import MySQLdb
 import sys
 
-if __name__ == '__main__':
-    username = sys.argv[1]
-    password = sys.argv[2]
-    db_name = sys.argv[3]
 
-    # Open database connection
-    db = MySQLdb.connect("localhost", username, password, db_name)
+if __name__ == "__main__":
+    username, password, database = sys.argv[1:]
 
-    # prepare a cursor object using cursor() method
+    # Connect to the database
+    db = MySQLdb.connect(
+        host="localhost",
+        user=username,
+        passwd=password,
+        db=database,
+        port=3306
+    )
+
+    # Create a cursor object
     cursor = db.cursor()
 
-    # execute SQL query using execute() method.
+    # Execute the query
     cursor.execute("SELECT * FROM states ORDER BY id ASC")
 
-    # Fetch all the rows using fetchall() method.
-    results = cursor.fetchall()
-
-    # print the results
-    for row in results:
+    # Fetch all the rows and print them one by one
+    rows = cursor.fetchall()
+    for row in rows:
         print(row)
 
-    # disconnect from server
+    # Close the cursor and database connection
+    cursor.close()
     db.close()
 
