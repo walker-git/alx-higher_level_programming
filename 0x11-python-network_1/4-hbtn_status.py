@@ -1,10 +1,13 @@
 #!/usr/bin/python3
-"""fetches https://intranet.hbtn.io/status."""
-import requests
-
+'''
+Write a Python script that fetches https://alx-intranet.hbtn.io/status
+(Request Module)
+'''
 
 if __name__ == "__main__":
-    r = requests.get("https://intranet.hbtn.io/status")
+    import requests
+    url = "https://alx-intranet.hbtn.io/status"
+    res = requests.get(url)
     print("Body response:")
-    print("\t- type: {}".format(type(r.text)))
-    print("\t- content: {}".format(r.text))
+    print("\t- type: {}".format(type(res.text)))
+    print("\t- content: {}".format(res.text))
